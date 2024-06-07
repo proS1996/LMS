@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 mongoose.set("strictQuery", true);
 
-dotenv.config({ path: "../backend/.env" });
+dotenv.config({ path: "../banking-app/.env" });
 
 const connectDB = async () => {
   try {
