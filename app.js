@@ -4,36 +4,14 @@ const trackingIdMiddleware = require("./middleware/trackingIdMiddleware");
 const db = require("./config/database");
 const dotenv = require("dotenv");
 const errorMiddleWare = require("./middleware/error");
-const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const swaggerDocs = require("./config/swagger");
 
 dotenv.config({ path: "backend/.env" });
 const app = express();
 db();
 
-
-// Swagger configuration
-const swaggerOptions = {
-  swaggerDefinition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Banking API",
-      version: "1.0.0",
-      description: "Banking services API documentation",
-      contact: {
-        name: "pankaj-honey"
-      }
-    },
-    servers: [
-      {
-        url: "http://localhost:8080/api/v1"
-      }
-    ]
-  },
-  apis: ["./routes/*.js"]
-};
-
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
+// Swagger integration
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Middlewares
