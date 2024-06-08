@@ -1,0 +1,15 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Banking API",
+    "description": "Banking services API documentation"
+  },
+  "host": "localhost:8080",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "paths": {},
+  "definitions": {}
+}
