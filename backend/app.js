@@ -39,7 +39,7 @@ app.use("/api/v1", branches);
 app.use("/api/v1", bank);
 app.use("/api/v1", transactions);
 
-app.get("/123", (req, res) => res.json({ message: "hello" }));
+app.get("/api/v1/123", (req, res) => res.json({ message: "hello" }));
 
 // Middleware for Error
 app.use(errorMiddleWare);
