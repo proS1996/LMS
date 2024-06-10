@@ -7,7 +7,6 @@ const errorMiddleWare = require("./middleware/error");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./config/swagger");
 
-dotenv.config({ path: "backend/.env" });
 const app = express();
 db();
 
@@ -43,6 +42,7 @@ app.get("/api/v1/123", (req, res) => res.json({ message: "hello" }));
 
 // Middleware for Error
 app.use(errorMiddleWare);
+dotenv.config();
 
 const port = process.env.PORT || 8080;
 
