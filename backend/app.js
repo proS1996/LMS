@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const errorMiddleWare = require("./middleware/error");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./config/swagger");
+const cors = require("cors");
 
 const app = express();
 db();
@@ -17,6 +18,13 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(trackingIdMiddleware);
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET",
+    credentials: true,
+  })
+);
 
 // Route Imports
 const user = require("./routes/users");
@@ -38,7 +46,12 @@ app.use("/api/v1", branches);
 app.use("/api/v1", bank);
 app.use("/api/v1", transactions);
 
-app.get("/api/v1/123", (req, res) => res.json({ message: "hello" }));
+const test = "test";
+
+app.get("/123", (req, res) => {
+  res.cookie("cookie", `${test}`, { maxAge: 1800000 });
+  res.status(200).send({ message: "kaif" });
+});
 
 // Middleware for Error
 app.use(errorMiddleWare);
